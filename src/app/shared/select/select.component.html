@@ -1,0 +1,39 @@
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label"
+    >Example textarea</label
+  >
+  <textarea
+    (input)="search($event)"
+    (focus)="isOpen = true"
+    cdkOverlayOrigin
+    #trigger="cdkOverlayOrigin"
+    #test
+    class="form-control"
+    id="exampleFormControlTextarea1"
+    rows="1"
+  ></textarea>
+</div>
+
+<ng-template
+  cdkConnectedOverlay
+  #templateRef
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen"
+  (backdropClick)="isOpen = false"
+  [cdkConnectedOverlayFlexibleDimensions]="true"
+>
+  <cdk-virtual-scroll-viewport
+    [ngStyle]="{ 'width.px': test.offsetWidth }"
+    class="example-list"
+    itemSize="50"
+  >
+    <div *cdkVirtualFor="let item of items; let i = index" class="example-item">
+      <app-select-item
+        (onClick)="onItemClick($event)"
+        [item]="item"
+        [itemIndex]="i"
+        [itemSelected]="isSelected(item)"
+      ></app-select-item>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</ng-template>
