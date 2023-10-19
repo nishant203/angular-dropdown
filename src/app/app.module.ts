@@ -5,25 +5,22 @@ import { PortalModule } from '@angular/cdk/portal';
 import {CdkVirtualScrollViewport, ScrollingModule} from '@angular/cdk/scrolling';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SelectComponent } from './shared/select/select.component';
-import { SelectItemComponent } from './shared/select/select-item/select-item.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatChipsModule} from '@angular/material/chips';
+import { SelectComponent } from './shared/select/select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SelectComponent,
-    SelectItemComponent,
   ],
   imports: [
     BrowserModule,
-    OverlayModule,
-    PortalModule,
     AppRoutingModule,
-    ScrollingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    SelectComponent
   ],
-  providers: [CdkVirtualScrollViewport],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

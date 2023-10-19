@@ -1,1 +1,9 @@
-<app-select [items]="items" [(ngModel)]="selectedItems"></app-select>
+<app-select
+  [items]="items"
+  (onClose)="closed()"
+  (onClear)="clear()"
+  (onDeselect)="deselected($event)"
+  (onSelect)="selected($event)"
+  optionText="itemName"
+  [(ngModel)]="selectedItems"
+></app-select>

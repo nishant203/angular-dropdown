@@ -1,19 +1,29 @@
-.example-list {
-    height: 200px; overflow: auto;
-    border: solid 1px #ccc;
-    border-radius: 5px;
-    background: #fff;
-    // text-align: center;
-    padding: 10px;
-    margin: 0;
-  }
-  
-  .example-item {
-    height: 50px;
-    display: flex;
-    // padding-top: ;
-  }
-  app-select-item {
-    display: flex;
-  }
-  
+.select-list {
+  height: 200px;
+  overflow: auto;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  background: #fff;
+  text-align: center;
+  margin: 0;
+}
+
+.select-item {
+  height: 50px;
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
+
+app-select-item {
+  display: flex;
+}
+
+.search-input{
+  border: none;
+}
+.clear-button{
+  border: none;
+  background-color: transparent;
+}

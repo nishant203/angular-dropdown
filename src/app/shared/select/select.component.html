@@ -2,16 +2,29 @@
   <label for="exampleFormControlTextarea1" class="form-label"
     >Example textarea</label
   >
-  <textarea
-    (input)="search($event)"
-    (focus)="isOpen = true"
+  <div
+    #selectContainer
+    class="form-control"
     cdkOverlayOrigin
     #trigger="cdkOverlayOrigin"
-    #test
-    class="form-control"
-    id="exampleFormControlTextarea1"
-    rows="1"
-  ></textarea>
+  >
+    <mat-chip-grid #chipGrid aria-label="Search...">
+      <mat-chip-row *ngIf="value && value.length > 0">
+        {{ value.length }} items selected
+      </mat-chip-row>
+      <input
+        placeholder="Search..."
+        class="form-control search-input"
+        (input)="search($event)"
+        (focus)="open()"
+        #multiSelectInput
+        [matChipInputFor]="chipGrid"
+      />
+      <button class="clear-button" type="button">
+        <mat-icon (click)="clear()">cancel</mat-icon>
+      </button>
+    </mat-chip-grid>
+  </div>
 </div>
 
 <ng-template
@@ -19,19 +32,24 @@
   #templateRef
   [cdkConnectedOverlayOrigin]="trigger"
   [cdkConnectedOverlayOpen]="isOpen"
-  (backdropClick)="isOpen = false"
+  [cdkConnectedOverlayWidth]="selectContainer.clientWidth"
+  [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop'"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  (backdropClick)="close()"
   [cdkConnectedOverlayFlexibleDimensions]="true"
 >
   <cdk-virtual-scroll-viewport
-    [ngStyle]="{ 'width.px': test.offsetWidth }"
-    class="example-list"
+    [ngStyle]="{ 'width.px': selectContainer.clientWidth }"
+    class="select-list"
     itemSize="50"
   >
-    <div *cdkVirtualFor="let item of items; let i = index" class="example-item">
+    <div *cdkVirtualFor="let item of items; let i = index" class="select-item">
       <app-select-item
         (onClick)="onItemClick($event)"
         [item]="item"
         [itemIndex]="i"
+        [optionText]="optionText"
+        [optionValue]="optionValue"
         [itemSelected]="isSelected(item)"
       ></app-select-item>
     </div>
