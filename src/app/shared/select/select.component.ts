@@ -136,7 +136,7 @@ export class SelectComponent implements ControlValueAccessor {
 
     if (this.value) {
       for (let i = 0; i < this.value.length; i++) {
-        if (ObjectUtils.equals(this.value[i], val)) {
+        if (ObjectUtils.isDeepEqual(this.value[i], val)) {
           index = i;
           break;
         }
